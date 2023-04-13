@@ -4,22 +4,86 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     >
-<androidx.constraintlayout.widget.ConstraintLayout
+<RelativeLayout
 
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".FoodDetailFragment">
 
-    <Button
-        android:id="@+id/btnFoodList"
+    <ImageView
+        android:id="@+id/foodImage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="200dp"
+        android:scaleType="fitCenter"
+        android:layout_alignParentTop="true"
+        android:layout_margin="5dp"
+        app:srcCompat="@drawable/ic_launcher_background" />
+
+    <TextView
+        android:id="@+id/foodName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Yiyecek Listesine Dön"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:text="Food Name"
+        android:layout_below="@id/foodImage"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:layout_marginTop="40dp"
+        android:layout_marginBottom="10dp"
+        android:layout_centerHorizontal="true">
+
+    </TextView>
+
+    <TextView
+        android:id="@+id/foodCalorie"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Food Calorie"
+        android:layout_below="@id/foodName"
+        android:textStyle="bold"
+        android:textSize="16sp"
+        android:layout_margin="10dp"
+        android:layout_centerHorizontal="true">
+
+    </TextView>
+
+    <TextView
+        android:id="@+id/foodCarbohydrate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Carbohydrate"
+        android:layout_below="@id/foodCalorie"
+        android:textSize="15sp"
+        android:layout_margin="10dp"
+        android:layout_centerHorizontal="true">
+
+    </TextView>
+
+    <TextView
+        android:id="@+id/foodProtein"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Protein"
+        android:layout_below="@id/foodCarbohydrate"
+        android:textSize="15sp"
+        android:layout_margin="10dp"
+        android:layout_centerHorizontal="true">
+
+    </TextView>
+
+    <TextView
+        android:id="@+id/foodFat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Fat"
+        android:layout_below="@id/foodProtein"
+        android:textSize="15sp"
+        android:layout_margin="10dp"
+        android:layout_centerHorizontal="true">
+
+    </TextView>
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+</RelativeLayout>
 </layout>
