@@ -8,7 +8,7 @@
 
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".FoodDetailFragment">
+    tools:context=".view.FoodDetailFragment">
 
     <ImageView
         android:id="@+id/foodImage"
@@ -51,11 +51,14 @@
         android:id="@+id/foodCarbohydrate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Carbohydrate"
         android:layout_below="@id/foodCalorie"
-        android:textSize="15sp"
-        android:layout_margin="10dp"
-        android:layout_centerHorizontal="true">
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:text="Carbohydrate"
+        android:textSize="15sp">
 
     </TextView>
 

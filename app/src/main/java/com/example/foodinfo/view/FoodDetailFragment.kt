@@ -1,11 +1,11 @@
-package com.example.foodinfo
+package com.example.foodinfo.view
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.navigation.Navigation
+import com.example.foodinfo.view.FoodDetailFragmentArgs
 import com.example.foodinfo.databinding.FragmentFoodDetailBinding
 
 class FoodDetailFragment : Fragment() {
@@ -28,11 +28,6 @@ class FoodDetailFragment : Fragment() {
         arguments?.let {
             foodId = FoodDetailFragmentArgs.fromBundle(it).foodId
             println(foodId)
-        }
-
-        binding.btnFoodList.setOnClickListener {
-            val action = FoodDetailFragmentDirections.actionFoodDetailFragmentToFoodListFragment()
-            Navigation.findNavController(it).navigate(action)
         }
 
     }

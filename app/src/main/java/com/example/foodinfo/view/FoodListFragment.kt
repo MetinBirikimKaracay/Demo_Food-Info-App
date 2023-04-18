@@ -1,4 +1,4 @@
-package com.example.foodinfo
+package com.example.foodinfo.view
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -25,10 +25,6 @@ class FoodListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.btnFoodDetail.setOnClickListener {
-            val action = FoodListFragmentDirections.actionFoodListFragmentToFoodDetailFragment(3)
-            Navigation.findNavController(it).navigate(action)
-        }
 
     }
 }
