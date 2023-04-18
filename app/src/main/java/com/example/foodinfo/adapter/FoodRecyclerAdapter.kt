@@ -2,9 +2,11 @@ package com.example.foodinfo.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.example.foodinfo.databinding.FoodRecyclerRowBinding
 import com.example.foodinfo.model.Food
+import com.example.foodinfo.view.FoodListFragmentDirections
 
 class FoodRecyclerAdapter(val foodList:ArrayList<Food>) :RecyclerView.Adapter<FoodRecyclerAdapter.FoodViewHolder>() {
 
@@ -29,9 +31,14 @@ class FoodRecyclerAdapter(val foodList:ArrayList<Food>) :RecyclerView.Adapter<Fo
 
         //gorsel çekme eklenecek
 
+        holder.binding.root.setOnClickListener {
+            val action = FoodListFragmentDirections.actionFoodListFragmentToFoodDetailFragment(0)
+            Navigation.findNavController(it).navigate(action)
+        }
+
     }
 
-    fun refreshFoodList(newFoodList : ArrayList<Food>){
+    fun refreshFoodList(newFoodList : List<Food>){
 
         foodList.clear()
         foodList.addAll(newFoodList)
