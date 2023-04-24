@@ -9,7 +9,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 class FoodAPIService {
 
     //APİ oluşturmak için kullanıyoruz. 8.5 videosunu izle
-    private val BASE_URL = "//https://raw.githubusercontent.com/"
+    private val BASE_URL = "https://raw.githubusercontent.com/"
     private val api = Retrofit.Builder()
         .baseUrl(BASE_URL)
         //Json formatını modele çevirmek için kullanıyoruz
