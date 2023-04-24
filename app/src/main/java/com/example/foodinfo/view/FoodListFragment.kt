@@ -43,6 +43,20 @@ class FoodListFragment : Fragment() {
         binding.foodListRecycler.layoutManager = LinearLayoutManager(context)
         binding.foodListRecycler.adapter = recyclerFoodAdapter
 
+        binding.SwipeRefreshLayout.setOnRefreshListener {
+
+            binding.foodListRecycler.visibility = View.GONE
+            binding.foodListErrorMessage.visibility = View.GONE
+            binding.foodListProgressBar.visibility = View.VISIBLE
+
+            viewModel.refreshData()
+
+            binding.SwipeRefreshLayout.isRefreshing = false
+
+
+        }
+
+
         observeLiveData()
 
     }
