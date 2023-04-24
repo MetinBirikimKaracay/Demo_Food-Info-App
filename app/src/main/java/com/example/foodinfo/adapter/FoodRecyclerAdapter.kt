@@ -7,6 +7,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.foodinfo.databinding.FoodRecyclerRowBinding
 import com.example.foodinfo.model.Food
 import com.example.foodinfo.view.FoodListFragmentDirections
+import com.example.foodinfo.util.loadImage
+import com.example.foodinfo.util.placeholderMaker
 
 class FoodRecyclerAdapter(val foodList:ArrayList<Food>) :RecyclerView.Adapter<FoodRecyclerAdapter.FoodViewHolder>() {
 
@@ -29,7 +31,9 @@ class FoodRecyclerAdapter(val foodList:ArrayList<Food>) :RecyclerView.Adapter<Fo
         holder.binding.recyclerRowFoodName.text = foodList.get(position).name
         holder.binding.recyclerRowFoodCalorie.text = foodList.get(position).calorie
 
-        //gorsel çekme eklenecek
+        //Util adlı dosyada oluşturduğumuz fonksiyonu burada kullanık. Video 8.9
+        holder.binding.recyclerRowImage.loadImage(foodList.get(position).image, placeholderMaker(holder.binding.recyclerRowImage.context))
+
 
         holder.binding.root.setOnClickListener {
             val action = FoodListFragmentDirections.actionFoodListFragmentToFoodDetailFragment(0)
