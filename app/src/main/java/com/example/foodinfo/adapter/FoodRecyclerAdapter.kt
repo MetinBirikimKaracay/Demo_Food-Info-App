@@ -36,7 +36,7 @@ class FoodRecyclerAdapter(val foodList:ArrayList<Food>) :RecyclerView.Adapter<Fo
 
 
         holder.binding.root.setOnClickListener {
-            val action = FoodListFragmentDirections.actionFoodListFragmentToFoodDetailFragment(0)
+            val action = FoodListFragmentDirections.actionFoodListFragmentToFoodDetailFragment(foodList.get(position).uuid)
             Navigation.findNavController(it).navigate(action)
         }
 

@@ -49,7 +49,9 @@ class FoodListFragment : Fragment() {
             binding.foodListErrorMessage.visibility = View.GONE
             binding.foodListProgressBar.visibility = View.VISIBLE
 
-            viewModel.refreshData()
+            //Yukarıdan aşağı çekilip güncelleme yapmak istediğimizde süreden bağımsız her zaman
+            //verileri internetten çekmek için bu fonksiyonu kullanıyoruz.
+            viewModel.refreshFromInternet()
 
             binding.SwipeRefreshLayout.isRefreshing = false
 

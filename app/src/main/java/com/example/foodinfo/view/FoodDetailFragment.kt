@@ -10,6 +10,8 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.example.foodinfo.view.FoodDetailFragmentArgs
 import com.example.foodinfo.databinding.FragmentFoodDetailBinding
+import com.example.foodinfo.util.loadImage
+import com.example.foodinfo.util.placeholderMaker
 import com.example.foodinfo.viewmodel.FoodDetailViewModel
 
 class FoodDetailFragment : Fragment() {
@@ -31,14 +33,14 @@ class FoodDetailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel = ViewModelProviders.of(this).get(FoodDetailViewModel::class.java)
-        viewModel.roomVerisiniAl()
-
-
+        //çekeceğimiz besinin idsi
         arguments?.let {
             foodId = FoodDetailFragmentArgs.fromBundle(it).foodId
-            println(foodId)
+
         }
+
+        viewModel = ViewModelProviders.of(this).get(FoodDetailViewModel::class.java)
+        viewModel.getRoomData(foodId)
 
         observeLiveData()
 
@@ -46,16 +48,19 @@ class FoodDetailFragment : Fragment() {
 
     fun observeLiveData(){
 
-        viewModel.foodLiveData.observe(viewLifecycleOwner, Observer {
+        viewModel.foodLiveData.observe(viewLifecycleOwner, Observer {food ->
 
-            it?.let {
+            food?.let {
 
                 binding.foodName.text = it.name
                 binding.foodCalorie.text = it.calorie
                 binding.foodCarbohydrate.text = it.carbohydrate
                 binding.foodProtein.text = it.protein
                 binding.foodFat.text = it.fat
-                //binding.foodImage.text
+
+                context?.let {
+                    binding.foodImage.loadImage(food.image, placeholderMaker(it))
+                }
 
             }
 

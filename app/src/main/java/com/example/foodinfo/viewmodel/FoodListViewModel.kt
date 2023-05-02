@@ -22,7 +22,7 @@ class FoodListViewModel(application: Application) : BaseViewModel(application) {
     val loading = MutableLiveData<Boolean>()
 
     //10 Dakikayı nanotime a çevirdik sonuna l koyarak long yaptık.
-    private val updateTime = 0.2 * 60 * 1000 * 1000 * 1000L
+    private val updateTime = 10 * 60 * 1000 * 1000 * 1000L
     private val foodAPIService = FoodAPIService()
     private val disposable = CompositeDisposable()
     private val uniqueSharedPreferences = UniqueSharedPreferences(getApplication())
@@ -41,7 +41,14 @@ class FoodListViewModel(application: Application) : BaseViewModel(application) {
 
     }
 
+    //yukarıdan çekerek güncelleme yaptığımızda verileri internetten indirmek için bu fonksiyonu yazdık
+    fun refreshFromInternet(){
+        downloadDataFromInternet()
+    }
+
     fun downloadDataFromSQLite(){
+
+        loading.value = true
 
         launch {
 

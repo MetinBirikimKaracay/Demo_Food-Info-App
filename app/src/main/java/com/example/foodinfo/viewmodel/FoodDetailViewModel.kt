@@ -1,18 +1,30 @@
 package com.example.foodinfo.viewmodel
 
+import android.app.Application
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.foodinfo.model.Food
+import com.example.foodinfo.service.FoodDAO
+import com.example.foodinfo.service.FoodDatabase
+import kotlinx.coroutines.launch
 
-class FoodDetailViewModel : ViewModel() {
+class FoodDetailViewModel(application: Application) : BaseViewModel(application) {
 
     val foodLiveData = MutableLiveData<Food>()
 
-    fun roomVerisiniAl(){
+    fun getRoomData(uuid : Int){
 
-        val elma = Food("Elma","80","15","0","1","www.test.com")
+        //suspend kullandığımız için launch ile coroutine scopu kullanıyoruz.
+        //bunu yapabilmek içinde BaseViewModel yaptık sınıfı
+        //9.9
+        launch {
 
-        foodLiveData.value = elma
+            val food = FoodDatabase(getApplication()).foodDao().getFood(uuid)
+            foodLiveData.value = food
+
+        }
+
+
 
     }
 }
