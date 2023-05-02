@@ -1,6 +1,7 @@
 package com.example.foodinfo.viewmodel
 
 import android.app.Application
+import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.foodinfo.model.Food
@@ -20,13 +21,36 @@ class FoodListViewModel(application: Application) : BaseViewModel(application) {
     val errorMesage = MutableLiveData<Boolean>()
     val loading = MutableLiveData<Boolean>()
 
+    //10 Dakikayı nanotime a çevirdik sonuna l koyarak long yaptık.
+    private val updateTime = 0.2 * 60 * 1000 * 1000 * 1000L
     private val foodAPIService = FoodAPIService()
     private val disposable = CompositeDisposable()
     private val uniqueSharedPreferences = UniqueSharedPreferences(getApplication())
 
     fun refreshData(){
 
-        downloadDataFromInternet()
+        val downloadTime = uniqueSharedPreferences.getTime()
+        if (downloadTime != null && downloadTime != 0L && System.nanoTime() - downloadTime < updateTime){
+            //güncelleme zamanı gelmedi sqlitetan çek
+
+            downloadDataFromSQLite()
+
+        }else{
+            downloadDataFromInternet()
+        }
+
+    }
+
+    fun downloadDataFromSQLite(){
+
+        launch {
+
+            val foods = FoodDatabase(getApplication()).foodDao().getAllFood()
+            showFoods(foods)
+
+            Toast.makeText(getApplication(),"Verileri SQLite'tan çekti",Toast.LENGTH_LONG).show()
+
+        }
 
     }
 
@@ -43,6 +67,8 @@ class FoodListViewModel(application: Application) : BaseViewModel(application) {
                     override fun onSuccess(t: List<Food>) {
 
                         sqlite(t)
+
+                        Toast.makeText(getApplication(),"Verileri İnternet'ten çekti",Toast.LENGTH_LONG).show()
 
                     }
 

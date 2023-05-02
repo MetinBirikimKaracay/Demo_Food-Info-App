@@ -37,5 +37,7 @@ class UniqueSharedPreferences {
 
     }
 
+    fun getTime() = sharedPreferences?.getLong("time",0)
+
 
 }

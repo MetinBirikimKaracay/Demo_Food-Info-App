@@ -48,7 +48,8 @@ dependencies {
     def glideVersion = '4.11.0'
     def rxJavaVersion = '2.2.8'
     def rxAndroidVersion = '2.1.1'
-    def roomVersion = '2.2.3'
+    //old version 2.2.3
+    def roomVersion = '2.5.1'
     def navVersion = '2.5.3'
     def preference_version = '1.2.0'
 
